@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mysql:
+    build:
+      context: ./HealthAPI
+      dockerfile: mysql.dockerfile
+    container_name: mysql_healthapi
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 15
+    networks:
+      - healthapi-network
+
+  node:
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+    build:
+      context: ./HealthAPI
+      dockerfile: node.dockerfile
+    container_name: node_healthapi
+    environment:
+      NODE_PORT: ${NODE_PORT}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URI: ${GOOGLE_CALLBACK_URI}
+      SESSION_SECRET: ${SESSION_SECRET}
+      PROTOCOL: ${PROTOCOL}
+      ENV: ${ENV}
+      HOSTNAME: ${HOSTNAME}
+    ports:
+      - "${NODE_PORT}:${NODE_PORT}"
+    networks:
+      - healthapi-network
+  
+  react:
+    build:
+      context: ./healthapp
+      dockerfile: dockerfile
+    container_name: react_healthapi
+    ports:
+      - "3000:3000"
+    networks:
+      - healthapi-network
+
+networks:
+  healthapi-network:
+    driver: bridge
