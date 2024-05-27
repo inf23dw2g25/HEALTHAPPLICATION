@@ -15,6 +15,7 @@ O objetivo do **HealthConsultationAPI** é fornecer uma plataforma segura e efic
 - **MySQL**: Utilizado como SGBD para armazenamento dos dados.
 - **OAuth 2.0**: Utilizado para implementação da camada de autenticação e autorização da google.
 - **Docker**: Utilizado para criação de containers para a aplicação multi-container (MySQL + Node.js).
+- **React**: Biblioteca JavaScript utilizada para a construção da interface do usuário (UI).
 * Pode fazer o pull das nossas imagens em:
 1. Imagem do mysql
 ~~~CMD
@@ -29,7 +30,7 @@ docker pull inf2023dw2g25/healthapi:healthapi-node
 
 ### Recursos Disponíveis
 
-A API disponibiliza os seguintes recursos:
+A API disponibiliza os seguintes recursos em localhost:3030
 
 1. **Consulta**: Permite a marcação, visualização, atualização e exclusão de consultas médicas que tem uma relacao de muitos para um com especialista e paciente .
 * Obter todas
@@ -82,6 +83,7 @@ A API disponibiliza os seguintes recursos:
 ### Autenticação e Autorização
 
 A API implementa uma camada de autenticação e autorização utilizando OAuth 2.0 da google. Os usuários devem autenticar-se para acessar aos metodos (POST, PUT , DELETE) dos recursos da API , sem a autheticação só estão autorizados a ver mos metodos (GET).
+Além disso, o React implementa uma camada extra de autenticação no lado do cliente. Isso garante que apenas usuários autenticados possam acessar e interagir com determinadas partes da interface do usuário, proporcionando uma camada adicional de segurança e controle sobre o acesso aos recursos da aplicação.
 
 ### Documentação da API
 
@@ -90,26 +92,58 @@ A API é documentada utilizando o formato OpenAPI 3.0. A documentação detalha 
 ## Repositórios
 
 - **GitHub**: [HealthAPI](https://github.com/inf23dw2g25/HealthAPI)
+- **GitHub**: [HealthAPP](https://github.com/inf23dw2g25/healthapp)
+- **GitHub**: [HEALTHAPPLICATION](https://github.com/inf23dw2g25/HEALTHAPPLICATION)
 - **Docker Hub**: [HealthAPI](https://hub.docker.com/repository/docker/inf2023dw2g25/healthapi/)
 
 ## Instruções
 
 1. faça o clone do repositório
 ~~~CMD
-git clone https://github.com/inf23dw2g25/HealthAPI
+git clone https://github.com/inf23dw2g25/HEALTHAPPLICATION
 ~~~
 
 2. entre na pasta clonada
 ~~~CMD
+cd HEALTHAPPLICATION
+~~~
+
+3. entre na pasta da API
+~~~CMD
 cd HealthAPI
 ~~~
 
-3. Para este passo o docker precisa de estar a correr . 
+4. faça o clone do repositório
+~~~CMD
+git clone https://github.com/inf23dw2g25/HealthAPI .
+~~~
+
+4. volte a root
+~~~CMD
+cd..
+~~~
+
+5. entra na pasta da APP
+~~~CMD
+cd healthapp
+~~~
+
+6. faça o clone do repositório da healthapp
+~~~CMD
+git clone https://github.com/inf23dw2g25/healthapp .
+~~~
+
+7. volte a root
+~~~CMD
+cd..
+~~~
+
+8. Para este passo o docker precisa de estar a correr . 
 ~~~CMD
 docker compose up --build
 ~~~
 
-4. Para a autheticação tem de inserir as seguintes credenciais:
+9. Para a authenticação tem de inserir as seguintes credenciais:
 ~~~~CMD
 client id : 860907029773-f1k556igmjvjdm8lpg0cja24olm2mhnf.apps.googleusercontent.com
 client secret : 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
