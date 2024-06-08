@@ -149,7 +149,7 @@ Selecione os quadrados profile e email para conseguirem-se authenticar.
 ![Readme PDF](./relatórios%20e%20documentos/README.pdf)
 
 ## Implementações extras e erros dificeis:
-Encontramos este erro sempre que tentamos obter o perfil do google:
+1. Encontramos este erro sempre que tentamos obter o perfil do google:
 ~~~Node
 Erro ao obter o perfil do usuário: TypeError: Cannot read properties of undefined (reading 'accessToken')
 node_healthapi   |     at Object.getPerfil (/app/services/perfilService.js:15:34)
@@ -164,11 +164,50 @@ node_healthapi   |     at next (/app/node_modules/express/lib/router/index.js:28
 node_healthapi   |     at Function.handle (/app/node_modules/express/lib/router/index.js:175:3)
 node_healthapi   | perfil Controller: undefined
 ~~~
-A documentação diz-nos que para obter o perfil está deprecated , porem tentamos ainda assim sem sucesso.
-
 Erro corrigido tivemos de optar por fazer uma modificaçao no middleware para usar o token Bearer apos autheticacão.
-
 Queriamos implementar uma parte de recursos para o profile do user , porem sem sucesso a obter do google api 
+
+
+
+2. Encontramos Varios erros de compatibilidades ao longo do projecto , porem o unico que nao conseguimos resolver foi :
+~~~Node
+[Error] Warning: y: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.
+y@
+http://localhost:3000/static/js/vendors~main.chunk.js:43935:35
+div
+Login@
+http://localhost:3000/static/js/main.chunk.js:2982:63
+div
+div
+TopBar@
+http://localhost:3000/static/js/main.chunk.js:2740:63
+div
+Router@
+http://localhost:3000/static/js/vendors~main.chunk.js:47800:68
+BrowserRouter@
+http://localhost:3000/static/js/vendors~main.chunk.js:45743:54
+AuthProvider@
+http://localhost:3000/static/js/main.chunk.js:566:5
+App@
+http://localhost:3000/static/js/main.chunk.js:205:58
+	printWarning (vendors~main.chunk.js:16143)
+	error (vendors~main.chunk.js:16120)
+	validateFunctionComponentInDev (vendors~main.chunk.js:33609)
+	mountIndeterminateComponent (vendors~main.chunk.js:33578)
+	beginWork$1 (vendors~main.chunk.js:39770)
+	performUnitOfWork (vendors~main.chunk.js:39040)
+	workLoopSync (vendors~main.chunk.js:38963)
+	renderRootSync (vendors~main.chunk.js:38936)
+	performConcurrentWorkOnRoot (vendors~main.chunk.js:38331:93)
+	workLoop (vendors~main.chunk.js:52855)
+	flushWork (vendors~main.chunk.js:52833)
+	performWorkUntilDeadline (vendors~main.chunk.js:53070)
+	run (vendors~main.chunk.js:53272)
+	runIfPresent (vendors~main.chunk.js:53300)
+	onGlobalMessage (vendors~main.chunk.js:53337)
+~~~
+
+
 
 ## POSTMAN COLECTION
 ![Readme PDF](./relatórios%20e%20documentos/HealthApi.postman_collection.json)
