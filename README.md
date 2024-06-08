@@ -143,11 +143,6 @@ cd..
 docker compose up --build
 ~~~
 
-9. Para a authenticação tem de inserir as seguintes credenciais:
-~~~~CMD
-client id : 860907029773-f1k556igmjvjdm8lpg0cja24olm2mhnf.apps.googleusercontent.com
-client secret : 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
-~~~~
 Selecione os quadrados profile e email para conseguirem-se authenticar.
 
 ## MARKDOWN PDF
