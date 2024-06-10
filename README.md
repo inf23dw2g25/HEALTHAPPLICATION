@@ -26,6 +26,12 @@ docker pull inf2023dw2g25/healthapi:healthapi-mysql
 ~~~CMD
 docker pull inf2023dw2g25/healthapi:healthapi-node
 ~~~
+
+3. Imagem do react
+~~~CMD
+docker pull inf2023dw2g25/healthapi:healthapi-react
+~~~
+
 - **OpenAPI 3.0**: Utilizado para documentação da API.
 
 ### Recursos Disponíveis
